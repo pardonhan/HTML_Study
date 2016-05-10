@@ -102,3 +102,48 @@
     console.log(array.slice(-2));//5,6
     console.log(array.slice(-3));//4,5,6
 ```
+## 8.数组截断
+这个小技巧主要用来锁定数组的大小，如果用于删除数组中的一些元素来说，是非常有用的。例如，你的数组有10个元素，但你只想只要前五个元素，那么你可以通过array.length=5来截断数组。如下面这个示例：
+``` javascript
+    var array = [1,2,3,4,5,6];
+    console.log(array.length); // 6
+    array.length = 3;
+    console.log(array.length); // 3
+    console.log(array); // [1,2,3]
+```
+## 9.替换所有
+函数```String.replace()```允许你使用字符串或正则表达式来替换字符串，本身这个函数只替换第一次出现的字符串，不过你可以使用正则表达多中的/g来模拟replaceAll()函数功能：
+``` javascript 
+    var string = "john john";
+    console.log(string.replace(/hn/, "ana")); // "joana john"
+    console.log(string.replace(/hn/g, "ana")); // "joana joana"
+```
+## 10.合并数组
+如果你要合并两个数组，一般情况之下你都会使用Array.concat()函数：
+``` javascript
+    var array1 = [1,2,3];
+    var array2 = [4,5,6];
+    console.log(array1.concat(array2)); // [1,2,3,4,5,6];
+```
+然后这个函数并不适合用来合并两个大型的数组，因为其将消耗大量的内存来存储新创建的数组。在这种情况之个，可以使用```Array.pus().apply(arr1,arr2)```来替代创建一个新数组。这种方法不是用来创建一个新的数组，其只是将第一个第二个数组合并在一起，同时减少内存的使用：
+``` javascript
+    var array1 = [1,2,3];
+    var array2 = [4,5,6];
+    console.log(array1.push.apply(array1, array2)); // [1,2,3,4,5,6];
+```
+## 11.将NodeList转换成数组
+如果你运行```document.querySelectorAll(“p”)```函数时，它可能返回DOM元素的数组，也就是```NodeList```对象。
+但这个对象不具有数组的函数功能，比如```sort()、reduce()、map()、filter()```等。
+为了让这些原生的数组函数功能也能用于其上面，需要将节点列表转换成数组。
+可以使用```[].slice.call(elements)```来实现：
+``` javascript
+    var elements = document.querySelectorAll("p"); // NodeList
+    var arrayElements = [].slice.call(elements); // Now the NodeList is an array
+    var arrayElements = Array.from(elements); // This is another way of converting NodeList to Array
+```
+## 12.数组元素的洗牌
+对于数组元素的洗牌，不需要使用任何外部的库，比如Lodash，只要这样做：
+``` javascript
+    var list = [1,2,3];
+    console.log(list.sort(function() { Math.random() - 0.5 })); // [2,1,3]
+```
