@@ -93,7 +93,7 @@
 ````
 ## 7.获取数组的最后一个参数
 
-函数：``` Array.prototype.slice(begin,end)```用来获取begin和end之间的数组元素。如果不设置end参数，将会将数组的默认长度当作end值。
+函数：``` Array.prototype.slice(begin,end)```，用来获取begin和end之间的数组元素。如果不设置end参数，将会将数组的默认长度当作end值。
 此外，这个函数还可以接受负数作为其参数，可以获取其最后几个数组元素:
 
 ```javascript
